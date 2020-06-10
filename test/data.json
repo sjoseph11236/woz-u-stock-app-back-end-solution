@@ -1,0 +1,37 @@
+{
+  "AMZN": {
+    "quote": {
+    "symbol": "AMZN",
+    "companyName": "Amazon.com, Inc.",
+    "primaryExchange": "NADQAS",
+    "calculationPrice": "close",
+    "open": 2219.69,
+    "openTime": 1597071029419,
+    "close": 2156.72,
+    "closeTime": 1599528515873,
+    "high": 2198.33,
+    "low": 2139,
+    "latestPrice": 2152.72,
+    "latestSource": "Close",
+    "latestTime": "February 21, 2020",
+    "latestUpdate": 1588582889796,
+    "latestVolume": 4749746,
+    "iexRealtimePrice": null,
+    "iexRealtimeSize": null,
+    "iexLastUpdated": null,
+    "delayedPrice": 2150.02,
+    "delayedPriceTime": 1607603216840,
+    "oddLotDelayedPrice": 2185.359,
+    "oddLotDelayedPriceTime": 1651770295062,
+    "extendedPrice": 2108.01,
+    "extendedChange": -2.33,
+    "extendedChangePercent": -0.00107,
+    "extendedPriceTime": 1623250841922,
+    "previousClose": 2180.2,
+    "previousVolume": 3179188,
+    "change": -59.86,
+    "changePercent": -0.02756,
+    "volume": 4836163
+    }
+  }
+}
