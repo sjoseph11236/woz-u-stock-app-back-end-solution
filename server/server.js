@@ -51,11 +51,13 @@ app.use(passport.session());
 
 app.use('/auth', require('./auth'));
 app.use('/api', require('./api'));
-
+app.use('/', (req,res, next) => res.send("Welcome"))
 
 // sends index.html for all other URL paths
-  app.use('*', (req, res) => {
-    res.send("Not found")
+  app.use('*', (req, res, next) => {
+    let err = new Error('Not Found');
+    err.statusCode = 404;
+    next(err);
   })
 
 
