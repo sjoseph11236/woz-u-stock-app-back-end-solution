@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-const path = require('path');
+const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
 const app = express();
@@ -48,17 +48,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
+app.use(cors());
 app.use('/auth', require('./auth'));
 app.use('/api', require('./api'));
-app.use('/', (req,res, next) => res.send("Welcome"))
+app.use('/', (req,res, next) => res.send("Welcome"));
 
 // sends index.html for all other URL paths
-  app.use('*', (req, res, next) => {
-    let err = new Error('Not Found');
-    err.statusCode = 404;
-    next(err);
-  })
+app.use('*', (req, res, next) => {
+  let err = new Error('Not Found');
+  err.statusCode = 404;
+  next(err);
+});
 
 
 // 404 
