@@ -30,7 +30,6 @@ router.post('/', async(req, res, next) => {
         symbol: req.body.symbol
       }
     });
-    
     await Transaction.create({
       userId: req.user.id,
       stockId: foundStock.id,

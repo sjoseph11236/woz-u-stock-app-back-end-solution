@@ -1,16 +1,23 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+// every user of your API or website will be assigned a unique session, and this allows you to store the user state.
+// https://flaviocopes.com/express-sessions/ 
 const session = require('express-session');
 const passport = require('passport');
 const app = express();
 const { db } = require('./db/');
 const User = require('./db/models/User');
+// initalize sequelize with session store
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+// passing a successfully connected Sequelize instance
 const dbStore = new SequelizeStore({ db });
 
+// Using SequelizeStore to create/sync the database table.
 dbStore.sync();
+// the credentials used to authenticate a user will only be transmitted during the login request. If authentication succeeds, a session will be established and maintained via a cookie set in the user's browser.
 
+// Each subsequent request will not contain credentials, but rather the unique cookie that identifies the session. 
 passport.serializeUser((user, done) => {
   try {
     done(null, user.id);
@@ -19,7 +26,7 @@ passport.serializeUser((user, done) => {
   }
 
 });
-
+// done is used to tell when done
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await User.findByPk(id);
@@ -36,15 +43,16 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-
+//  secret should be a randomly unique string for your application.
 app.use(session({
   secret: process.env.SESSION_SECRET || 'a wildly insecure secret',
   store: dbStore,
   resave: false,
   saveUninitialized: false
 }));
-
+// initialises the authentication modul
 app.use(passport.initialize());
+// uses persistent login sessions, passport.session() middleware must also be used.
 app.use(passport.session());
 
 

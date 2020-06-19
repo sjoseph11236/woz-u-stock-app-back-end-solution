@@ -24,6 +24,7 @@ router.get('/:userId', async (req, res, next) => {
 
 router.post('/', async(req, res, next) => { 
   try {
+    console.log('here')
     const [stock, wasCreated] = await Stock.findOrCreate({
       where: { 
         symbol: req.body.symbol,

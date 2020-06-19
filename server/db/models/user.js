@@ -32,6 +32,8 @@ const User = db.define('user', {
       isAlphanumeric: true
     }
   },
+  // Salt is a unique encryption key used to dynamically encrypt the users password.
+  // https://medium.com/@benjaminpwagner/using-sequelize-hooks-and-crypto-to-encrypt-user-passwords-5cf1a27513d9
   salt: {
     type: Sequelize.STRING,
     // Making `.salt` act like a function hides it when serializing to JSON.
